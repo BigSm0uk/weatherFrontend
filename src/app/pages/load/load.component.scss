@@ -1,0 +1,92 @@
+$input-width: 600px;
+$input-height: 450px;
+
+.input-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: center;
+  width: $input-width;
+  // height: $input-height;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  left: calc(50% - $input-width / 2);
+  top: calc(50% - $input-height / 2);
+  form {
+    padding: 30px;
+  }
+}
+.input-file-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input-file {
+  position: relative;
+  display: inline-block;
+}
+.input-file span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: middle;
+  color: rgb(255 255 255);
+  text-align: center;
+  border-radius: 4px;
+  background-color: #419152;
+  line-height: 22px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+.input-file input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+/* Focus */
+.input-file input[type="file"]:focus + span {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Hover/Active */
+.input-file:hover span {
+  background-color: #59be6e;
+}
+.input-file:active span {
+  background-color: #2e703a;
+}
+
+/* Disabled */
+.input-file input[type="file"]:disabled + span {
+  background-color: #eee;
+}
+
+/* Список файлов */
+.input-file-list {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+.input-file-list-item {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.input-file-list-remove {
+  color: red;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 5px;
+}

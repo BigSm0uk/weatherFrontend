@@ -1,0 +1,40 @@
+<div class="input-form">
+  <form method="post" enctype="multipart/form-data">
+    <div class="input-file-row">
+      <label class="input-file">
+        <input
+          type="file"
+          accept=".xls,.xlsx"
+          multiple
+          (change)="fileSelected($event)"
+        />
+        <span>Выберите файл</span>
+      </label>
+
+      <div class="input-file-list">
+        @for (file of filesToUpload; track $index) {
+        <div class="input-file-list-item">
+          <span>{{ file.name }}</span>
+          <button type="menu" (click)="deleteFileListItem(file)">X</button>
+        </div>
+        }
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="filesToUpload.length === 0"
+        (click)="onFormSubmit()"
+      >
+        Загрузить
+      </button>
+      @if (!loadErrorStatus ) { @if (loadProgress !== 0 && loadProgress !==100)
+      {
+      <span>Progress: {{ loadProgress }}%</span>
+      } @if (loadProgress ===100) {
+      <span>{{ loadMessage }}</span>
+      } } @else {
+      <span>Ошибка!</span>
+      }
+    </div>
+  </form>
+</div>

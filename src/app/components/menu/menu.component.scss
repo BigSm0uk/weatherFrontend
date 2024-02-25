@@ -1,0 +1,30 @@
+@import "../../styleVariables/variables";
+
+.app-menu {
+  width: $menuWidth;
+  left: 0;
+  height: 100vh;
+  background-color: $base-backround-active;
+  position: fixed;
+  top: 0;
+  color: $base-text-active;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app-menu-item {
+  padding: 10px;
+  width: calc(100% - 40px);
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: $base-backround-active-hovered;
+    transition: 0.3s ease-in-out;
+  }
+  &:nth-child(1) {
+    margin-top: 10px;
+  }
+}

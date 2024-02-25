@@ -1,0 +1,85 @@
+<div class="navigation-selector">
+  Выберите тип навигации:
+  <select [(ngModel)]="concreteNavigationType">
+    @for (type of navigationType | keyvalue; track $index) {
+    <option [value]="type.value">{{ type.value }}</option>
+    }
+  </select>
+</div>
+@if (concreteNavigationType === navigationType.Month) {
+<div class="navigation-selector">
+  Навигация по месяцам:
+  <select [(ngModel)]="concreteMonth" (ngModelChange)="onMontInputChange()">
+    @for (monthValue of month | keyvalue; track $index) {
+    <option [value]="monthValue.value">{{ monthValue.value }}</option>
+    }
+  </select>
+</div>
+} @if (concreteNavigationType === navigationType.Year) {
+<div class="navigation-selector">
+  Навигация по годам:
+  <input
+    type="number"
+    placeholder="Введите год"
+    [(ngModel)]="currentYear"
+    (ngModelChange)="onYearInputChange()"
+    min="1900"
+    max="2100"
+  />
+</div>
+}
+<table class="tbl-pad">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>T</th>
+      <th>Отн. влажность</th>
+      <th>Td</th>
+      <th>Атм. давление</th>
+      <th>Направление ветра</th>
+      <th>Скорость ветра</th>
+      <th>Облачность</th>
+      <th>h</th>
+      <th>VV</th>
+      <th>Погодные явления</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (data of weatherData; track data.id) {
+    <tr>
+      <td>{{ data.date | date : "yyyy-MM-dd" }}</td>
+      <td>{{ data.temperature }}</td>
+      <td>{{ data.relativeHumidity }}</td>
+      <td>{{ data.dewpoint }}</td>
+      <td>{{ data.atmosphericPressure }}</td>
+      <td>{{ data.windDirection }}</td>
+      <td>{{ data.windSpeed }}</td>
+      <td>{{ data.cloudiness }}</td>
+      <td>{{ data.cloudboundary }}</td>
+      <td>{{ data.horizontalVisibility }}</td>
+      <td>{{ data.weatherPhenomena }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+@if (weatherData.length === 0) {
+<div>Нет данных</div>
+}
+<div class="table-navigation">
+  <span>Номер страницы: {{ numberOfCurrentPage }}</span>
+  <button
+    (click)="changeCurrentPageNumber(numberOfCurrentPage - 1)"
+    [disabled]="numberOfCurrentPage === 1"
+    class="table-navigation btn left"
+  >
+    <i class="gg-arrow-long-left"></i>
+  </button>
+
+  <button
+    class="table-navigation btn right"
+    (click)="changeCurrentPageNumber(numberOfCurrentPage + 1)"
+  >
+    <i class="gg-arrow-long-right"></i>
+  </button>
+</div>
